@@ -1,0 +1,11 @@
+- name: paly level variables
+  hosts: local
+  connection: local
+  vars:
+    COURSE: Ansible
+    DURATION: 10HRS
+    TRAINER: Sivakumar Reddy
+  tasks:
+  - name: print the course info 
+    ansible.builtin.debug:
+      msg: "Course Name is: {{COURSE}}, Duration: {{ DURATION }}, Trainer: {{ TRAINER }}"

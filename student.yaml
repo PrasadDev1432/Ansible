@@ -1,0 +1,41 @@
+- name: "Prasad"
+  age: 28,
+  DOB: "06-06-1997"
+  addresses:
+  - D.No: 9-135
+    street: "MTM"
+    state: AP
+    PIN: 521001
+    type: current
+
+  - D.No: 9-135
+    street: "MTM"
+    state: AP
+    PIN: 521001
+    type: perm
+  skills: 
+  - java
+  - python
+  - cloud
+  - .net
+
+- name: "Prasad Lanka"
+  age: 28,
+  DOB: "06-06-1997"
+  addresses:
+  - D.No: 9-135
+    street: "MTM"
+    state: AP
+    PIN: 521001
+    type: current
+
+  - D.No: 9-135
+    street: "MTM"
+    state: AP
+    PIN: 521001
+    type: perm
+  skills: 
+  - java
+  - python
+  - cloud
+  - .net
