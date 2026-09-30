@@ -3,7 +3,7 @@
   connection: local
   vars_files:
   - course.yaml
-  var:
+  vars:
     Name: "Play level variable preference check"
   vars_prompt:
   - name: Name
@@ -11,6 +11,32 @@
     private: yes
   tasks:
   - name: print credentials
-    Name: "Task level preference check"
+    vars:
+      Name: "Task level preference check"
     ansible.builtin.debug:
       msg: "Hello, Username is: {{ username }}, Password is: {{ password }}, course is: {{ COURSE }}, Name is: {{ Name }}"
+
+#       - name: vars preference
+#   hosts: local
+#   connection: local
+#   # vars:
+#   #   NAME: from play level
+#   # vars_files:
+#   # - course.yaml
+#   # vars_prompt:
+#   # - name: NAME
+#   #   prompt: What is your NAME?
+#   #   private: false  
+#   tasks:
+#   - name: testing variables preference
+#     # vars:
+#     #   NAME: from task level
+#     ansible.builtin.debug:
+#       msg: "Name: {{ NAME }}"
+
+# # 1. args or command line
+# # 2. from task
+# # 3. files
+# # 4. prompt
+# # 5. play level
+# # 6. inventory
