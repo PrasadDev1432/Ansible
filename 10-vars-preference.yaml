@@ -5,10 +5,10 @@
   # - course.yaml
   vars:
     Name: Play level variable preference check
-  vars_prompt:
-  - name: Name
-    prompt: What is your Name ?
-    private: true
+  # vars_prompt:
+  # - name: Name
+  #   prompt: What is your Name ?
+  #   private: true
   tasks:
   - name: print credentials
     # vars:
