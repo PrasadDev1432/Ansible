@@ -11,8 +11,8 @@
     private: true
   tasks:
   - name: print credentials
-    vars:
-      Name: Task level preference check
+    # vars:
+    #   Name: Task level preference check
     ansible.builtin.debug:
       msg: "Hello, Name is: {{ Name }}"
 
