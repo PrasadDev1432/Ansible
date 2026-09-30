@@ -5,13 +5,13 @@
     Course: AWS DevOps Engineering
     Duration: 10HRS
     is_live: true
-  tools:  # ["linux", "shell", "ansible"]
-    - linux
-    - shell
-    - ansible
-  concepts:
-    cloud: aws
-    cm: ansible
+    tools:  # ["linux", "shell", "ansible"]
+      - linux
+      - shell
+      - ansible
+    concepts:
+      cloud: aws
+      cm: ansible
   tasks:
     name: print the cource info
     ansible.builtin.debug:
