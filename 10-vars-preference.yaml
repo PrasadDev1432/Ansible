@@ -1,0 +1,16 @@
+- name: checking preference in all types
+  hosts: local
+  connection: local
+  vars_files:
+  - course.yaml
+  var:
+    Name: "Play level variable preference check"
+  vars_prompt:
+  - name: Name
+    prompt: What is your Name ?
+    private: yes
+  tasks:
+  - name: print credentials
+    Name: "Task level preference check"
+    ansible.builtin.debug:
+      msg: "Hello, Username is: {{ username }}, Password is: {{ password }}, course is: {{ COURSE }}, Name is: {{ Name }}"
