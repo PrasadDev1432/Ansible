@@ -1,5 +1,5 @@
 - name: checking preference in all types
-  hosts: local
+  hosts: localS
   connection: local
   vars_files:
   - course.yaml
@@ -14,7 +14,7 @@
     vars:
       Name: "Task level preference check"
     ansible.builtin.debug:
-      msg: "Hello, Username is: {{ username }}, Password is: {{ password }}, course is: {{ COURSE }}, Name is: {{ Name }}"
+      msg: "Hello, Password is: {{ password }}, course is: {{ COURSE }}, Name is: {{ Name }}, Username is: {{ username }} "
 
 #       - name: vars preference
 #   hosts: local
