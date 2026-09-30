@@ -14,7 +14,7 @@
     vars:
       Name: Task level preference check
     ansible.builtin.debug:
-      msg: "Hello, Password is: {{ password }}, course is: {{ COURSE }}, Name is: {{ Name }}, Username is: {{ username }} "
+      msg: "Hello, Name is: {{ Name }}"
 
 #       - name: vars preference
 #   hosts: local
