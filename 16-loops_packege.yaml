@@ -1,9 +1,9 @@
-- name: install packeges
+- name: install pacakges
   hosts: local
   connection: local
   tasks:
-  - name: packeges
-    ansible.builtin.packeges:
+  - name: pacakges
+    ansible.builtin.pacakge:
       name: "{{ item }}"
       state: latest
     loop:
