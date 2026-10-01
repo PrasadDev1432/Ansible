@@ -1,6 +1,6 @@
 - name: gethering facts
   hosts: local
-  connections: local
+  connection: local
   # ansible collects the info of target server, before it executes any other fact
   tasks:
   - name: facts

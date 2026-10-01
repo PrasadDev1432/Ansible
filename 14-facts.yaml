@@ -1,6 +1,6 @@
 - name: checking the facts
   hosts: local
-  connections: local
+  connection: local
   tasks:
   - name: install nginx if RedHat
     ansible.builtin.dnf:
