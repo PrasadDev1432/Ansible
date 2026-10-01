@@ -1,8 +1,8 @@
-- name: install pacakges
+- name: install pacakge
   hosts: local
   connection: local
   tasks:
-  - name: pacakges
+  - name: print pacakges
     ansible.builtin.pacakge:
       name: "{{ item }}"
       state: latest
