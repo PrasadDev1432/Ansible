@@ -1,0 +1,13 @@
+- name: install packeges
+  hosts: local
+  connection: local
+  tasks:
+  - name: packeges
+    ansible.builtin.packeges:
+      name: "{{ item }}"
+      state: latest
+    loop:
+    - mysql
+    - nginx
+    - zip
+    - oracle
