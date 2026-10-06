@@ -28,7 +28,7 @@
 
   # Covert string into list
   - name: Covert string into list
-    ansible.builtin.split:
+    ansible.builtin.debug:
       msg: "technologies are: {{ technologies | split(',')   }}"
 
   # Covert map into list 
