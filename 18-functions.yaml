@@ -1,0 +1,52 @@
+# Ansible Functions
+- name: function
+  hosts: local
+  connection: local
+  vars:
+    technologies: DevOps, Linux, Shell, Ansible
+    name: "Sivakumar Reddy M"
+    gmail: prasadlanka009@GMAIL.COM
+    IpAddress: 123.223.23.023
+
+    # Disctionary == map
+    tags:
+      Application: Payment
+      Environment: Dev
+    
+    # Lists
+    ListTags:
+    - key: Application
+      value: Payment
+    - key: Environment
+      value: Dev
+
+  tasks:
+  # Setting Default Variable
+  - name: defult variable
+    ansible.builtin.debug:
+      msg: "{{ name | defult('Prasad') }}"
+
+  # Covert string into list
+  - name: Covert string into list
+    ansible.builtin.split:
+      msg: "technologies are: {{ technologies | split(',')   }}"
+
+  # Covert map into list 
+  - name: Covert map into list
+    ansible.builtin.debug:
+      msg: "Tags are: {{ tags | dict2items }}"
+
+  # Covert list into map
+  - name: Covert list into map
+    ansible.builtin.debug:
+      msg: "ListTags are: {{ ListTags | items2dict }}"
+
+  # Convarting Uppercase
+  - name: Converting Uppercase
+    ansible.builtin.debug:
+      msg: " Uppercase are: {{ name | upper }}"
+
+  # Converting Lowercase
+  - name: Convarting Lowercase
+    ansible.builtin.debug:
+      msg: "Lowercase are: {{ gmail | lower }}"
