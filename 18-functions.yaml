@@ -24,7 +24,7 @@
   # Setting Default Variable
   - name: defult variable
     ansible.builtin.debug:
-      msg: "{{ name | defult('Prasad') }}"
+      msg: "{{ name | default('Prasad') }}"
 
   # Covert string into list
   - name: Covert string into list
