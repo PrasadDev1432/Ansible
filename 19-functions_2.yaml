@@ -1,73 +1,67 @@
-# Converting yaml files into json files
-# Step:- 1
-# read yaml files and take it into a varivale
+# Converting yaml file into json file
+- name: yaml to json and command vs shell demo
+  hosts: localhost
+  vars:
+    ipaddress: 192.168.1.10
 
-- name: read yaml and take it into a variable
-  ansible.builtin.set_fact:
-    student_yaml: "{{ lookup('file' , 'student.yaml') | from_yaml }}"
+  tasks:
+    # Step 1: read yaml file and take it into a variable
+    - name: read yaml and take it into a variable
+      ansible.builtin.set_fact:
+        student_yaml: "{{ lookup('file', 'student.yaml') | from_yaml }}"
 
+    # Step 2: convert yaml into json
+    - name: convert yaml into json
+      ansible.builtin.debug:
+        msg: "json: {{ student_yaml | to_json }}"
 
-# Step:- 2
-# Converting yaml files into json file format
-- name: convert yaml into json
-  ansible.builtin.debug:
-    msg: "json: {{ student_yaml | to_json}}"
+    # Step 3: save readable json into a file
+    - name: saved into json file
+      ansible.builtin.copy:
+        dest: ./student-data.json
+        content: "{{ student_yaml | to_nice_json }}"
 
-# Step:- 3
-# saving readable json file format
-- name: saved into json file
-  ansible.builtin.copy:
-    dest: ./stundent-data.json
-    content: "json: {{ student_yaml | to_nice_json}}"
+    # check IP address valid or not
+    - name: checking IP_Address Valid or Not
+      ansible.builtin.debug:
+        msg: "{{ ipaddress | ansible.utils.ipv4 }}"
 
+    # grep for root using command module (pipe work avvadu, fail avthundi)
+    - name: grep for root using command module
+      ansible.builtin.command: cat /etc/passwd | grep root
+      register: command_output
+      ignore_errors: true
 
-# checking IP address valid or not 
-- name: checking IP_Address Valid or Not
-  ansible.builtin.debug:
-    msg: "{{ ipaddress | ansible.utils.ip4}}"
+    - name: print the command_output
+      ansible.builtin.debug:
+        msg: "{{ command_output }}"
 
-# grep for root using command module
-- name: grep for root using command module
-  ansible.builtin.command: cat /etc/passwd | grep root
-  register: command_output
-  ignore_errors: true
+    # grep for root using shell module
+    - name: grep for root using shell module
+      ansible.builtin.shell: cat /etc/passwd | grep root
+      register: shell_output
 
-# print the command_output
-- name: print the command_output
-  ansible.builtin.debug:
-    msg: "{{ command_output }}"
+    - name: print the shell_output
+      ansible.builtin.debug:
+        msg: "{{ shell_output }}"
 
+    # redirect using command module (fail avthundi)
+    - name: redirect the output command module
+      ansible.builtin.command: ls -lts > /tmp/output.txt
+      register: redirect_output
+      ignore_errors: true
 
-# grep for root using shell module
+    - name: print redirect output command module
+      ansible.builtin.debug:
+        msg: "{{ redirect_output }}"
 
-- name: grep for root using shell module
-  ansible.builtin.shell: cat /etc/passwd | grep root
-  register: "{{ shell_output }}"
+    # redirect using shell module (work avthundi)
+    - name: redirect output shell module
+      ansible.builtin.shell: ls -lts > /tmp/output.txt
+      register: redirect_shell_output
 
-# print the shell_output
-- name: print the shell_output
-  ansible.builtin.debug:
-    msg: "{{ shell_output }}"
-
-# redirect the output using command module
-- name: redirect the output command module
-  ansible.builtin.command: ls -lts > /tmp/output.txt
-  register: redirect_output
-  ignore_errors: true
-
-# Printing redirect output using command module
-- name: print redirect output command module
-  ansible.builtin.debug:
-    msg: "{{ redirect_output }}"
-
-# redirect the output using shell module
-- name: redirect output shell module
-  ansible.builtin.shell: ls -lts > /tmp/output.txt
-  register: redirect_shell_output
-
-# Print redirect shell output 
-- name: print redirect output using shell module
-  ansible.builtin.debug:
-    msg: "{{ redirect_shell_output }}" 
+    - name: print redirect output using shell module
+      ansible.builtin.debug:
+        msg: "{{ redirect_shell_output }}"
 
 
