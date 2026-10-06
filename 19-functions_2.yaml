@@ -1,0 +1,73 @@
+# Converting yaml files into json files
+# Step:- 1
+# read yaml files and take it into a varivale
+
+- name: read yaml and take it into a variable
+  ansible.builtin.set_fact:
+    student_yaml: "{{ lookup('file' , 'student.yaml') | from_yaml }}"
+
+
+# Step:- 2
+# Converting yaml files into json file format
+- name: convert yaml into json
+  ansible.builtin.debug:
+    msg: "json: {{ student_yaml | to_json}}"
+
+# Step:- 3
+# saving readable json file format
+- name: saved into json file
+  ansible.builtin.copy:
+    dest: ./stundent-data.json
+    content: "json: {{ student_yaml | to_nice_json}}"
+
+
+# checking IP address valid or not 
+- name: checking IP_Address Valid or Not
+  ansible.builtin.debug:
+    msg: "{{ ipaddress | ansible.utils.ip4}}"
+
+# grep for root using command module
+- name: grep for root using command module
+  ansible.builtin.command: cat /etc/passwd | grep root
+  register: command_output
+  ignore_errors: true
+
+# print the command_output
+- name: print the command_output
+  ansible.builtin.debug:
+    msg: "{{ command_output }}"
+
+
+# grep for root using shell module
+
+- name: grep for root using shell module
+  ansible.builtin.shell: cat /etc/passwd | grep root
+  register: "{{ shell_output }}"
+
+# print the shell_output
+- name: print the shell_output
+  ansible.builtin.debug:
+    msg: "{{ shell_output }}"
+
+# redirect the output using command module
+- name: redirect the output command module
+  ansible.builtin.command: ls -lts > /tmp/output.txt
+  register: redirect_output
+  ignore_errors: true
+
+# Printing redirect output using command module
+- name: print redirect output command module
+  ansible.builtin.debug:
+    msg: "{{ redirect_output }}"
+
+# redirect the output using shell module
+- name: redirect output shell module
+  ansible.builtin.shell: ls -lts > /tmp/output.txt
+  register: redirect_shell_output
+
+# Print redirect shell output 
+- name: print redirect output using shell module
+  ansible.builtin.debug:
+    msg: "{{ redirect_shell_output }}" 
+
+
