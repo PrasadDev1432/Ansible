@@ -1,6 +1,7 @@
 # Converting yaml file into json file
 - name: yaml to json and command vs shell demo
-  hosts: localhost
+  hosts: local
+  connection: local
   vars:
     ipaddress: 192.168.1.10
 
